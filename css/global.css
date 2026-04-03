@@ -23,14 +23,12 @@
     to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
-/* Glow Effect for Active Widgets */
+/* Glow Effect */
 .glow-amber { box-shadow: 0 0 20px rgba(251, 191, 36, 0.2); }
 .glow-blue { box-shadow: 0 0 20px rgba(96, 165, 250, 0.2); }
-.glow-fuchsia { box-shadow: 0 0 20px rgba(232, 121, 249, 0.2); }
-.glow-cyan { box-shadow: 0 0 20px rgba(34, 211, 238, 0.2); }
 
 /* ==========================================
-   EASTER EGG: THE MATRIX CANVAS
+   EASTER EGG: THE MATRIX CANVAS (FIXED)
    ========================================== */
 #matrix-canvas {
     position: fixed;
@@ -38,13 +36,19 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 9999; /* Berada di atas segala-galanya */
-    pointer-events: none; /* Supaya butang di bawahnya masih boleh diklik */
-    opacity: 0; /* Tersembunyi pada asalnya */
+    z-index: 5; /* Rendahkan supaya dia di belakang UI (z-20/z-30) */
+    pointer-events: none;
+    opacity: 0;
     transition: opacity 1s ease-in-out;
-    background: rgba(0, 0, 0, 0.85); /* Gelapkan sedikit skrin belakang */
+    background: rgba(0, 0, 0, 0.9); /* Hitam pekat sedikit */
 }
 
 .matrix-active {
     opacity: 1 !important;
+}
+
+/* Pastikan semua elemen UI utama berada di atas Matrix */
+header, footer, main, aside {
+    position: relative;
+    z-index: 20;
 }
