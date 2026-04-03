@@ -3,163 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KETICK HUB - Mission Control</title>
+    <title>KETICK HUB | Mission Control</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="css/globals.css">
 </head>
-<body class="bg-[#0B0F1A] text-slate-400 font-sans h-screen flex flex-col overflow-hidden page-fade-in">
-    
-    <canvas id="matrix-canvas"></canvas>
+<body class="blueprint-bg h-screen flex flex-col overflow-hidden page-fade-in">
 
-    <header class="border-b border-slate-800/60 bg-[#0F172A]/80 p-4 flex justify-between items-center backdrop-blur-md relative z-20">
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-amber-400 rounded flex items-center justify-center font-bold text-black">K</div>
-            <div class="flex flex-col">
-                <span class="text-white font-bold leading-none tracking-tight">KETICK <span class="text-amber-400">HUB</span></span>
-                <span class="text-[10px] text-slate-500">ketick.my</span>
-            </div>
+    <header class="h-14 border-b border-[#1E232D] bg-[#0A0C10]/95 backdrop-blur-md flex items-center justify-between px-6 relative z-50">
+        <div class="flex items-center gap-6">
+            <span class="font-bold tracking-tighter text-white text-xl">KETICK<span class="text-[#38BDF8]">.</span></span>
+            <nav class="hidden lg:flex gap-6 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">
+                <a href="#" class="text-white border-b border-[#38BDF8] pb-1">Control_Center</a>
+                <a href="business.html" class="hover:text-white transition-colors">Business</a>
+                <a href="ideanest.html" class="hover:text-white transition-colors">Incubator</a>
+                <a href="family.html" class="hover:text-white transition-colors">Vault</a>
+            </nav>
         </div>
-        <div class="flex flex-col items-end font-mono text-[10px]">
-            <div class="text-slate-500 uppercase tracking-widest">UTC/Lime: <span id="utc-clock" class="text-slate-300">00:00:00</span></div>
-            <div class="text-slate-500 uppercase tracking-widest">UTC/Local: <span id="clock" class="text-amber-400">00:00:00 AM</span></div>
+        <div class="font-mono text-[10px] text-slate-500 flex items-center gap-4">
+            <div class="hidden sm:block uppercase tracking-widest">Node: <span class="text-[#38BDF8]">Secure_Primary</span></div>
+            <div class="bg-[#1E232D] px-3 py-1 rounded text-white" id="clock">00:00:00</div>
         </div>
     </header>
 
-    <div class="flex flex-1 overflow-hidden relative z-20">
+    <div class="flex flex-1 overflow-hidden">
         
-        <aside class="w-56 border-r border-slate-800/60 p-5 font-mono text-xs hidden lg:block overflow-y-auto bg-[#0B0F1A]/50">
-            <h2 class="text-white font-bold mb-6 text-sm">KETICK_OS</h2>
-            <div class="text-slate-500 mb-4 uppercase tracking-tighter">Project Tree</div>
-            <ul class="space-y-3" id="project-tree">
-                <li class="cursor-pointer hover:text-amber-400 transition-colors">
-                    <span class="text-amber-400">└─</span> apps/
-                    <ul class="pl-4 mt-2 space-y-2 border-l border-slate-800 ml-1">
-                        <li class="hover:text-white">├─ web/</li>
-                        <li class="hover:text-white">└─ api/</li>
+        <aside class="w-60 border-r border-[#1E232D] p-6 font-mono text-[11px] hidden xl:block bg-[#0A0C10]/50">
+            <h2 class="text-slate-500 font-bold mb-6 uppercase tracking-widest">Project_Structure</h2>
+            <ul class="space-y-4 text-slate-400" id="project-tree">
+                <li class="cursor-pointer hover:text-white">└─ apps/
+                    <ul class="pl-4 mt-2 space-y-2 border-l border-[#1E232D] ml-1">
+                        <li class="hover:text-[#38BDF8]">├─ web_portal</li>
+                        <li class="hover:text-[#38BDF8]">└─ core_api</li>
                     </ul>
                 </li>
-                <li class="cursor-pointer hover:text-amber-400">
-                    <span class="text-amber-400">└─</span> packages/
-                    <ul class="pl-4 mt-2 space-y-2 border-l border-slate-800 ml-1 text-slate-500">
-                        <li class="hover:text-white cursor-pointer" onclick="window.location.href='business.html'">├─ business/</li>
-                        <li class="hover:text-white cursor-pointer" onclick="window.location.href='entertainment.html'">├─ entertainment/</li>
-                        <li class="hover:text-white cursor-pointer" onclick="window.location.href='family.html'">├─ family/</li>
-                        <li class="hover:text-white cursor-pointer" onclick="window.location.href='ideanest.html'">└─ ideanest/</li>
+                <li class="cursor-pointer hover:text-white mt-4">└─ subdomains/
+                    <ul class="pl-4 mt-2 space-y-2 border-l border-[#1E232D] ml-1">
+                        <li class="hover:text-[#38BDF8]" onclick="window.location.href='business.html'">├─ biz.ketick.my</li>
+                        <li class="hover:text-[#38BDF8]" onclick="window.location.href='ideanest.html'">├─ nest.ketick.my</li>
+                        <li class="hover:text-[#38BDF8]" onclick="window.location.href='family.html'">├─ vault.ketick.my</li>
+                        <li class="hover:text-[#38BDF8]" onclick="window.location.href='entertainment.html'">└─ play.ketick.my</li>
                     </ul>
                 </li>
             </ul>
         </aside>
 
-        <main class="flex-1 p-6 overflow-y-auto">
+        <main class="flex-1 p-4 md:p-8 overflow-y-auto">
             
-            <div class="flex justify-between items-end mb-6 border-b border-slate-800 pb-4">
-                <div>
-                    <h1 class="text-slate-200 font-bold text-xl uppercase tracking-widest">Mission Control</h1>
-                    <div class="flex gap-4 text-[10px] font-mono mt-1">
-                        <span>SYSTEM_STATUS: <span class="text-emerald-400 font-bold">OPTIMAL</span></span>
-                        <span>ACTIVE_SUBDOMAINS: <span class="text-white">4</span></span>
-                        <span>USER_SESSION: <span class="text-emerald-400 font-bold">ADMIN_01</span></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-5">
+            <div class="grid grid-cols-12 gap-6 h-full">
                 
-                <div class="bg-[#161B22]/60 border border-slate-800 rounded-xl p-5 hover:border-amber-400/30 transition-all">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="font-mono text-[11px] text-amber-400 uppercase tracking-widest">Ideanest_Pipeline</h3>
-                        <span class="text-[10px] text-slate-600">...</span>
+                <section class="col-span-12 lg:col-span-4 xl:col-span-3 space-y-6">
+                    <div class="border border-[#1E232D] bg-[#11141A]/80 p-5">
+                        <h3 class="text-[10px] font-bold text-slate-500 uppercase mb-6 tracking-widest flex justify-between">
+                            System_Metrics <span class="text-emerald-500">Live</span>
+                        </h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between text-[11px] mb-2">
+                                    <span>NEURAL_LOAD</span>
+                                    <span class="font-mono text-[#38BDF8]" id="cpu-load">12%</span>
+                                </div>
+                                <div class="w-full bg-[#1E232D] h-[1px]">
+                                    <div id="cpu-bar" class="bg-[#38BDF8] h-full transition-all duration-700" style="width: 12%"></div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 text-[10px] font-mono">
+                                <div>
+                                    <span class="text-slate-600 block">MEMORY</span>
+                                    <span class="text-white">4.2GB / 16GB</span>
+                                </div>
+                                <div>
+                                    <span class="text-slate-600 block">LATENCY</span>
+                                    <span class="text-emerald-500">22ms</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="h-36">
-                        <canvas id="chartIdea"></canvas>
-                    </div>
-                    <div class="mt-4 flex justify-between text-[10px] font-mono border-t border-slate-800 pt-3">
-                        <span class="text-slate-500">Ideas: <span class="text-white">12</span></span>
-                        <span class="text-slate-500">Ready for Dev: <span class="text-white">2</span></span>
-                        <span class="text-amber-400 font-bold">[12 Ideas in Incubation]</span>
-                    </div>
-                </div>
 
-                <div class="bg-[#161B22]/60 border border-slate-800 rounded-xl p-5 hover:border-blue-400/30 transition-all">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="font-mono text-[11px] text-blue-400 uppercase tracking-widest">Biz_Hub_Performance</h3>
-                        <span class="text-[10px] text-slate-600">...</span>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="flex-1 h-32">
-                            <canvas id="chartBiz"></canvas>
+                    <div class="border border-[#1E232D] bg-[#11141A]/80 p-5">
+                        <h3 class="text-[10px] font-bold text-slate-500 uppercase mb-4 tracking-widest">Active_Partners</h3>
+                        <div class="space-y-3" id="partner-list">
+                            <div class="flex items-center justify-between text-[11px] border-b border-[#1E232D] pb-2">
+                                <span class="text-slate-300">TechCorp_B2B</span>
+                                <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
+                            </div>
+                            <div class="flex items-center justify-between text-[11px] border-b border-[#1E232D] pb-2">
+                                <span class="text-slate-300">Nexus_Digital</span>
+                                <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
+                            </div>
+                            <div class="flex items-center justify-between text-[11px]">
+                                <span class="text-slate-300">Global_Logistics</span>
+                                <span class="w-1.5 h-1.5 bg-slate-700 rounded-full"></span>
+                            </div>
                         </div>
-                        <div class="flex flex-col gap-2 text-[10px] font-mono mt-2">
-                            <div class="text-slate-400">Total Partners: <span class="text-white">4</span></div>
-                            <div class="text-slate-400">Volume: <span class="text-emerald-400">RM15K</span></div>
-                            <button class="mt-4 bg-slate-800 px-2 py-1 rounded hover:bg-slate-700 transition-all">> Manage Partners</button>
-                        </div>
                     </div>
-                </div>
+                </section>
 
-                <div class="bg-[#161B22]/60 border border-slate-800 rounded-xl p-5 overflow-hidden">
-                    <h3 class="font-mono text-[11px] text-fuchsia-400 mb-4 uppercase tracking-widest">Ent_Feed</h3>
-                    <div class="space-y-4 font-mono text-[10px] h-32 overflow-y-auto pr-2" id="ent-feed-container">
-                        <div class="border-l-2 border-slate-800 pl-3">
-                            <div class="text-slate-600">[14:32:01] Article: Future of AI in Gaming Published</div>
+                <section class="col-span-12 lg:col-span-8 xl:col-span-9 flex flex-col gap-6">
+                    <div class="border border-[#1E232D] bg-[#11141A]/80 p-6 flex-1 flex flex-col min-h-[300px]">
+                        <div class="flex justify-between items-center mb-8">
+                            <div>
+                                <h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Growth_Analytics</h3>
+                                <p class="text-[11px] text-slate-400 mt-1">Projected incubation performance for Q2 2026.</p>
+                            </div>
+                            <div class="flex gap-2">
+                                <div class="w-2 h-2 bg-[#38BDF8]"></div>
+                                <div class="w-2 h-2 bg-slate-800"></div>
+                            </div>
                         </div>
-                        <div class="border-l-2 border-emerald-400 pl-3">
-                            <div class="text-slate-600">[14:30:15] Stream: Digital Twin Live in Sains</div>
+                        <div class="flex-1 w-full relative">
+                            <canvas id="mainChart"></canvas>
                         </div>
                     </div>
-                </div>
 
-                <div class="bg-[#161B22]/60 border border-slate-800 rounded-xl p-5 flex gap-4 items-center">
-                    <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-400 text-2xl border border-blue-400/20">🛡️</div>
-                    <div class="font-mono">
-                        <h3 class="text-[11px] text-white uppercase">Family Vault & Shared Services</h3>
-                        <div class="text-[10px] text-slate-500 mt-1">Secure: <span class="text-emerald-400">YES</span></div>
-                        <div class="text-[10px] text-slate-500">Files Encrypted: <span class="text-white">2,410</span></div>
-                    </div>
-                </div>
-
-                <div class="bg-[#161B22]/60 border border-slate-800 rounded-xl p-5">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-mono text-[11px] text-emerald-400 uppercase tracking-widest">System_Health</h3>
-                        <span class="text-[10px] text-slate-600">...</span>
-                    </div>
-                    <div class="grid grid-cols-3 gap-2 mb-4">
-                        <div class="text-center">
-                            <div class="text-[9px] text-slate-500">CPU Load</div>
-                            <div class="text-sm font-mono text-white" id="cpu-load">12%</div>
+                    <div class="h-44 border border-[#1E232D] bg-black p-4 font-mono flex flex-col shadow-2xl">
+                        <div id="terminal-log" class="flex-1 overflow-y-auto text-[11px] text-slate-500 space-y-1 mb-2">
+                            <div>// KETICK_OS INITIALIZED. ACCESS GRANTED.</div>
+                            <div>// WAITING FOR DEPLOYMENT COMMAND...</div>
                         </div>
-                        <div class="text-center">
-                            <div class="text-[9px] text-slate-500">Memory</div>
-                            <div class="text-sm font-mono text-white">4GB/16GB</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-[9px] text-slate-500">Latency</div>
-                            <div class="text-sm font-mono text-emerald-400">25ms</div>
+                        <div class="flex items-center gap-3 border-t border-[#1E232D] pt-3">
+                            <span class="text-[#38BDF8] font-bold">></span>
+                            <input type="text" id="cli-input" placeholder="Enter command (status, goto biz, help)..." 
+                                   class="bg-transparent border-none outline-none text-white w-full text-xs placeholder-slate-800 focus:ring-0">
                         </div>
                     </div>
-                    <div class="flex flex-wrap gap-x-4 gap-y-1 text-[9px] font-mono pt-2 border-t border-slate-800">
-                        <span class="flex items-center gap-1 text-emerald-400"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span> Database: ONLINE</span>
-                        <span class="flex items-center gap-1 text-emerald-400"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span> Services: ACTIVE</span>
-                        <span class="flex items-center gap-1 text-slate-500">Uptime: 99.99%</span>
-                    </div>
-                </div>
+                </section>
 
-            </div>
-
-            <div class="mt-8 bg-[#161B22]/80 border border-slate-700 rounded-xl overflow-hidden shadow-2xl">
-                <div class="bg-slate-800/30 px-4 py-2 border-b border-slate-700 flex justify-between">
-                    <span class="font-mono text-[10px] text-amber-400 uppercase tracking-tighter">Ketick-Cli</span>
-                    <span class="text-slate-600">...</span>
-                </div>
-                <div class="p-4 bg-black/40 h-32 overflow-y-auto font-mono text-xs" id="terminal-log">
-                    <div class="text-slate-500">// Terminal standby for mission deployment...</div>
-                </div>
-                <div class="flex items-center gap-2 p-3 bg-black/60 border-t border-slate-800 font-mono">
-                    <span class="text-emerald-500 font-bold ml-2">></span>
-                    <input type="text" id="cli-input" placeholder="deploy --subdomain biz _" 
-                        class="w-full bg-transparent border-none outline-none text-emerald-400 placeholder-slate-700 text-sm focus:ring-0">
-                </div>
             </div>
 
         </main>
