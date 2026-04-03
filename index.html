@@ -1,85 +1,165 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ketick.my | Command Center</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    <title>Ketick Command Center</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-slate-950 text-white h-screen w-screen overflow-hidden relative font-sans selection:bg-orange-500 selection:text-white">
+<body>
+    <div class="bg-animated"></div>
+    <canvas id="particle-canvas"></canvas>
 
-    <canvas id="particleCanvas" class="absolute inset-0 z-0"></canvas>
-
-    <div class="relative z-10 h-full w-full max-w-[1600px] mx-auto p-4 md:p-8 grid grid-cols-1 md:grid-cols-3 grid-rows-4 md:grid-rows-3 gap-6 pointer-events-none">
+    <div class="container">
         
-        <div class="col-span-1 md:col-span-3 flex justify-between items-center h-16 pointer-events-auto">
-            <h1 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-yellow-300 drop-shadow-lg">
-                ketick.my <span class="text-sm font-normal text-cyan-300 ml-2 animate-pulse">● Live Command</span>
-            </h1>
-            <div class="text-slate-300 text-sm glass px-4 py-2 rounded-full">
-                Sistem Aktif | <span id="onlineCount" class="text-green-400 font-bold">1,432</span> Keluarga Online
+        <header class="glass-panel slide-down">
+            <div class="logo">
+                <i class="fa-solid fa-network-wired"></i> KETICK.MY
             </div>
-        </div>
+            <nav>
+                <a href="#analytics">Analytics</a>
+                <a href="#services">Services</a>
+                <a href="#portfolio">Portfolio</a>
+            </nav>
+        </header>
 
-        <div id="radarWidget" class="glass rounded-3xl p-6 relative overflow-hidden pointer-events-auto cursor-pointer group flex flex-col justify-center items-center">
-            <h2 class="text-cyan-300 font-semibold mb-4 w-full text-left">📡 Radar Idea Segar</h2>
-            <div class="radar-container relative w-48 h-48 rounded-full border border-cyan-500/30 flex items-center justify-center">
-                <div class="radar-sweep absolute inset-0 rounded-full"></div>
-                <div id="radarText" class="absolute text-sm font-bold text-yellow-300 text-center opacity-0 transition-opacity duration-300 drop-shadow-[0_0_8px_rgba(253,224,71,0.8)]">
-                    Mencari Idea...
+        <section id="hero" class="fade-in">
+            <div class="hero-content">
+                <h1 class="glitch-text" data-text="SYSTEM ONLINE">SYSTEM ONLINE</h1>
+                <p>Welcome to the central hub. Monitor operations, analyze real-time data, and optimize performance across all sectors.</p>
+                <a href="https://ketick.my" class="btn-glow magnetic-btn">
+                    <i class="fa-solid fa-power-off"></i> Access Main Command Center
+                </a>
+            </div>
+        </section>
+
+        <section id="analytics">
+            <h2 class="section-title fade-in">Real-Time Data Core</h2>
+            <div class="grid-analytics">
+                <div class="glass-panel widget fade-in">
+                    <h3>Active Users</h3>
+                    <div class="widget-content">
+                        <i class="fa-solid fa-users widget-icon"></i>
+                        <span class="counter" data-target="18492">0</span>
+                    </div>
+                </div>
+                
+                <div class="glass-panel widget fade-in">
+                    <h3>Server Load</h3>
+                    <div class="widget-content circular-progress">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="bg" cx="50" cy="50" r="40"></circle>
+                            <circle class="progress" cx="50" cy="50" r="40"></circle>
+                        </svg>
+                        <div class="percentage"><span class="counter" data-target="87">0</span>%</div>
+                    </div>
+                </div>
+
+                <div class="glass-panel widget fade-in">
+                    <h3>Traffic Flow</h3>
+                    <div class="widget-content chart-container">
+                        <div class="bar" style="--height: 40%;"></div>
+                        <div class="bar" style="--height: 70%;"></div>
+                        <div class="bar" style="--height: 50%;"></div>
+                        <div class="bar" style="--height: 90%;"></div>
+                        <div class="bar" style="--height: 60%;"></div>
+                        <div class="bar" style="--height: 100%;"></div>
+                    </div>
                 </div>
             </div>
-            <p class="text-xs text-slate-400 mt-4 text-center group-hover:text-orange-400 transition-colors">Klik radar untuk rahsia! (Easter Egg)</p>
-        </div>
+        </section>
 
-        <div class="glass rounded-3xl flex flex-col items-center justify-center relative md:row-span-2">
-            <h2 class="absolute top-6 text-white/50 text-sm tracking-widest uppercase">Nadi ketick.my</h2>
-            <div class="core-orb relative w-32 h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-orange-500 to-yellow-400 shadow-[0_0_50px_rgba(249,115,22,0.6)] flex items-center justify-center">
-                <div class="absolute inset-0 rounded-full border-2 border-white/20 animate-ping"></div>
-                <div class="absolute w-full h-full rounded-full bg-orange-400/30 blur-xl core-pulse"></div>
-                <span class="z-10 text-4xl">🔥</span>
-            </div>
-        </div>
-
-        <div class="glass rounded-3xl p-6 flex flex-col pointer-events-auto overflow-hidden md:row-span-2">
-            <h2 class="text-green-400 font-semibold mb-4 flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> Feed Komuniti (Live)
-            </h2>
-            <div id="liveFeedContainer" class="flex-1 overflow-hidden relative flex flex-col gap-3">
+        <section id="services">
+            <h2 class="section-title fade-in">Core Protocols</h2>
+            <div class="grid-services">
+                <div class="glass-panel service-card fade-in">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>Cyber Security</h3>
+                    <p>Advanced encryption and threat monitoring to keep data secure.</p>
                 </div>
-        </div>
-
-        <div class="glass rounded-3xl p-6 pointer-events-auto flex flex-col justify-center">
-            <h2 class="text-yellow-400 font-semibold mb-4">📈 Indeks Kebahagiaan</h2>
-            <div class="w-full bg-slate-800 rounded-full h-4 mb-2 overflow-hidden">
-                <div class="bg-gradient-to-r from-orange-500 to-yellow-400 h-4 rounded-full" style="width: 85%;"></div>
+                <div class="glass-panel service-card fade-in">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h3>Optimization</h3>
+                    <p>High-speed performance tuning for seamless user experience.</p>
+                </div>
+                <div class="glass-panel service-card fade-in">
+                    <i class="fa-solid fa-database"></i>
+                    <h3>Cloud Architecture</h3>
+                    <p>Scalable infrastructure designed for heavy operational loads.</p>
+                </div>
             </div>
-            <p class="text-xs text-slate-400 mb-4">Tahap Interaksi: Sangat Tinggi (85%)</p>
-            
-            <svg class="w-full h-12 stroke-cyan-400 fill-none" viewBox="0 0 100 20" preserveAspectRatio="none">
-                <path d="M0,15 Q10,5 20,10 T40,15 T60,5 T80,10 T100,2" stroke-width="2" class="sparkline-path"></path>
-            </svg>
-        </div>
+        </section>
 
-        <div class="col-span-1 md:col-span-3 flex justify-center items-end pb-8 pointer-events-auto">
-            <button id="magneticBtn" class="magnetic-btn relative px-10 py-4 rounded-full text-lg font-bold text-slate-900 bg-white overflow-hidden group hover:text-white transition-colors duration-300 ease-out shadow-[0_0_30px_rgba(255,255,255,0.3)]">
-                <span class="relative z-10">🚀 Sertai ketick.my Sekarang</span>
-                <div class="liquid-bg absolute inset-0 bg-gradient-to-r from-orange-500 via-cyan-500 to-green-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </button>
-        </div>
+        <section id="portfolio">
+            <h2 class="section-title fade-in">Mission Logs</h2>
+            <div class="grid-portfolio">
+                <div class="glass-panel portfolio-item fade-in">
+                    <div class="portfolio-overlay">
+                        <h3>Project Alpha</h3>
+                        <p>Global network deployment</p>
+                    </div>
+                </div>
+                <div class="glass-panel portfolio-item fade-in">
+                    <div class="portfolio-overlay">
+                        <h3>Project Nexus</h3>
+                        <p>AI-driven data analysis</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <h2 class="section-title fade-in">Encrypted Communications</h2>
+            <div class="grid-testimonials">
+                <div class="glass-panel chat-bubble fade-in">
+                    <div class="chat-header">
+                        <img src="https://i.pravatar.cc/100?img=11" alt="User" class="avatar">
+                        <div>
+                            <strong>Commander J.</strong>
+                            <span>Sector 7</span>
+                        </div>
+                    </div>
+                    <p class="chat-text">"The dashboard interface is exceptionally fluid. System response time has improved by 400%."</p>
+                </div>
+                <div class="glass-panel chat-bubble fade-in">
+                    <div class="chat-header">
+                        <img src="https://i.pravatar.cc/100?img=4" alt="User" class="avatar">
+                        <div>
+                            <strong>Agent Sarah</strong>
+                            <span>Ops Division</span>
+                        </div>
+                    </div>
+                    <p class="chat-text">"Visualizing our data flow through this glassmorphic UI makes threat detection instantaneous."</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="glass-panel fade-in">
+            <div class="footer-content">
+                <div class="footer-cta">
+                    <h3>Ready to Initialize?</h3>
+                    <a href="https://ketick.my" class="btn-glow magnetic-btn">Deploy System via Ketick.my</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ketick Command Center. All systems operational.</p>
+            </div>
+        </footer>
 
     </div>
 
-    <div id="easterEggModal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="glass p-8 rounded-3xl max-w-md text-center transform scale-95 transition-transform duration-300" id="easterEggContent">
-            <h3 class="text-2xl font-bold text-orange-400 mb-2">🎉 Rahsia Dijumpai!</h3>
-            <p class="text-slate-300 mb-6">Tahukah anda? Meluangkan 20 minit sehari bermain *board game* boleh merapatkan hubungan keluarga sebanyak 40%. Cari lebih banyak tips di ketick.my!</p>
-            <button id="closeModalBtn" class="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-full transition-colors">Tutup & Teroka Lagi</button>
-        </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
