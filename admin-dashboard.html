@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Command Center - Ketick</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script>
+        if(sessionStorage.getItem('ketickAuth') !== 'true') {
+            window.location.href = 'login.html'; // Tendang keluar jika belum log masuk
+        }
+    </script>
+</head>
+<body>
+    <div class="bg-animated"></div>
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="container">
+        <header class="glass-panel slide-down">
+            <div class="logo" style="color: var(--accent-magenta); text-shadow: 0 0 8px var(--accent-magenta);">
+                <i class="fa-solid fa-user-secret"></i> COMMAND CENTER
+            </div>
+            <nav>
+                <span style="color: var(--text-muted); margin-right: 20px;">Status: <strong style="color: #2ed573;">ENCRYPTED</strong></span>
+                <button id="logoutBtn" class="btn-glow" style="padding: 8px 20px; font-size: 0.8rem; background: transparent; border: 1px solid var(--accent-magenta); box-shadow: none;">Log Keluar</button>
+            </nav>
+        </header>
+
+        <section id="admin-core" style="padding-top: 20px;">
+            <h2 class="section-title fade-in">
+                Real-Time Data Overview
+            </h2>
+            <div class="grid-analytics">
+                <div class="glass-panel widget fade-in">
+                    <h3>SEO Health Score</h3>
+                    <div class="widget-content circular-progress">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="bg" cx="50" cy="50" r="40"></circle>
+                            <circle class="progress" cx="50" cy="50" r="40" style="stroke: var(--accent-blue);"></circle>
+                        </svg>
+                        <div class="percentage"><span class="counter" data-target="98">0</span>%</div>
+                    </div>
+                </div>
+
+                <div class="glass-panel widget fade-in">
+                    <h3>Analitik Jualan (Live)</h3>
+                    <div class="widget-content chart-container">
+                        <div class="bar" style="--height: 40%;"></div>
+                        <div class="bar" style="--height: 80%;"></div>
+                        <div class="bar" style="--height: 60%;"></div>
+                        <div class="bar" style="--height: 100%;"></div>
+                        <div class="bar" style="--height: 50%;"></div>
+                        <div class="bar" style="--height: 90%;"></div>
+                    </div>
+                    <p style="margin-top: 15px; color: var(--text-muted); font-size: 0.9rem;">Trending: Meningkat 24%</p>
+                </div>
+
+                <div class="glass-panel widget fade-in">
+                    <h3>Trafik Rangkaian</h3>
+                    <div class="widget-content">
+                        <i class="fa-solid fa-tower-broadcast widget-icon" style="color: var(--accent-blue);"></i>
+                        <span class="counter" data-target="15894">0</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
