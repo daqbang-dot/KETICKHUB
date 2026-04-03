@@ -1,223 +1,110 @@
 // ==========================================
-// KETICK_OS - CORE LOGIC (main.js)
+// KETICK HUB - ADVANCED MISSION CONTROL LOGIC
 // ==========================================
 
-function refreshStats() {
-    if (typeof KETICK_DB !== 'undefined') {
-        const ideaCount = KETICK_DB.count('ideas') + 7; 
-        const bizCount = KETICK_DB.count('partners') + 12; 
+document.addEventListener('DOMContentLoaded', () => {
 
-        const ideaText = document.querySelector('#widget-ideanest span');
-        const bizText = document.querySelector('#widget-business span');
+    // --- 1. DUAL CLOCK SYSTEM ---
+    function updateClocks() {
+        const now = new Date();
+        
+        // Local Time (AM/PM)
+        const local = now.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        document.getElementById('clock').textContent = local;
 
-        if (ideaText) ideaText.textContent = `${ideaCount} in Incubation`;
-        if (bizText) bizText.textContent = `${bizCount} Active`;
-
-        if (ideaChart) {
-            ideaChart.data.datasets[0].data[5] = ideaCount;
-            ideaChart.update();
-        }
+        // UTC Time (24h)
+        const utc = now.toISOString().substr(11, 8);
+        document.getElementById('utc-clock').textContent = utc;
     }
-}
+    setInterval(updateClocks, 1000);
 
-function updateClock() {
-    const now = new Date();
-    const clockElement = document.getElementById('clock');
-    if (clockElement) clockElement.textContent = now.toLocaleTimeString('en-GB', { hour12: false });
-}
-setInterval(updateClock, 1000);
-updateClock(); 
+    // --- 2. IDEANEST LINE CHART (Smooth Curve) ---
+    const ctxIdea = document.getElementById('chartIdea').getContext('2d');
+    const ideaGradient = ctxIdea.createLinearGradient(0, 0, 0, 150);
+    ideaGradient.addColorStop(0, 'rgba(251, 191, 36, 0.2)');
+    ideaGradient.addColorStop(1, 'transparent');
 
-setInterval(() => {
-    const cpuValElement = document.getElementById('cpu-val');
-    if (cpuValElement) cpuValElement.textContent = (Math.floor(Math.random() * 20) + 5) + "%";
-}, 3000);
-
-let ideaChart; 
-function initChart() {
-    const ctx = document.getElementById('chartIdea');
-    if (!ctx) return;
-
-    let currentIdeas = 7;
-    if (typeof KETICK_DB !== 'undefined') currentIdeas += KETICK_DB.count('ideas');
-
-    const data = {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-        datasets: [{
-            label: 'Idea In Incubation',
-            data: [2, 3, 5, 4, 6, currentIdeas],
-            borderColor: '#fbbf24', 
-            backgroundColor: 'rgba(251, 191, 36, 0.1)',
-            borderWidth: 2,
-            tension: 0.4,
-            fill: true,
-            pointBackgroundColor: '#10b981',
-            pointBorderColor: '#0f172a',
-            pointRadius: 4
-        }]
-    };
-
-    const config = {
-        type: 'line', data: data,
+    const chartIdea = new Chart(ctxIdea, {
+        type: 'line',
+        data: {
+            labels: ['01', '02', '03', '04', '05', '06', '07'],
+            datasets: [{
+                data: [10, 15, 12, 18, 14, 20, 18],
+                borderColor: '#fbbf24',
+                backgroundColor: ideaGradient,
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4,
+                pointRadius: 0,
+                hoverPointRadius: 4
+            }]
+        },
         options: {
-            responsive: true, maintainAspectRatio: false,
-            plugins: { legend: { display: false }, tooltip: { enabled: true, mode: 'index', intersect: false } },
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
             scales: {
-                x: { grid: { color: 'rgba(51, 65, 85, 0.5)' }, ticks: { color: '#94a3b8', font: { family: "'Fira Code', monospace", size: 10 } } },
-                y: { grid: { color: 'rgba(51, 65, 85, 0.5)' }, ticks: { color: '#94a3b8', stepSize: 2, font: { family: "'Fira Code', monospace", size: 10 } }, beginAtZero: true }
+                x: { display: false },
+                y: { display: false }
             }
         }
-    };
-    ideaChart = new Chart(ctx, config);
-}
-if (typeof Chart !== 'undefined') initChart();
+    });
 
-// ==========================================
-// EASTER EGG LOGIC: THE MATRIX
-// ==========================================
-let matrixInterval;
-function startMatrix() {
-    const canvas = document.getElementById('matrix-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    
-    canvas.classList.add('matrix-active');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレゲゼデベペオォコソトノホモヨョロゴゾドボポヴッン';
-    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const nums = '0123456789';
-    const alphabet = katakana + latin + nums;
-
-    const fontSize = 16;
-    const columns = canvas.width / fontSize;
-    const drops = [];
-    for (let x = 0; x < columns; x++) drops[x] = 1;
-
-    const draw = () => {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#0F0';
-        ctx.font = fontSize + 'px monospace';
-
-        for (let i = 0; i < drops.length; i++) {
-            const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-            drops[i]++;
+    // --- 3. BIZ PERFORMANCE BAR CHART ---
+    const ctxBiz = document.getElementById('chartBiz').getContext('2d');
+    const chartBiz = new Chart(ctxBiz, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+            datasets: [{
+                data: [40, 65, 50, 85, 70],
+                backgroundColor: '#3b82f6',
+                borderRadius: 4,
+                barThickness: 10
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { display: false },
+                y: { grid: { color: '#1e293b' }, ticks: { display: false } }
+            }
         }
-    };
-    matrixInterval = setInterval(draw, 33);
-}
+    });
 
-function stopMatrix() {
-    const canvas = document.getElementById('matrix-canvas');
-    if (!canvas) return;
-    canvas.classList.remove('matrix-active');
-    clearInterval(matrixInterval);
-}
+    // --- 4. SYSTEM HEALTH SIMULATION ---
+    setInterval(() => {
+        const load = Math.floor(Math.random() * 15) + 5;
+        document.getElementById('cpu-load').textContent = load + "%";
+    }, 2000);
 
-// ==========================================
-// TERMINAL COMMAND PARSER
-// ==========================================
-const cliInput = document.getElementById('cli-input');
-const terminalLog = document.getElementById('terminal-log');
+    // --- 5. TERMINAL CLI ---
+    const cliInput = document.getElementById('cli-input');
+    const terminalLog = document.getElementById('terminal-log');
 
-function addToLog(msg, color = 'text-slate-300') {
-    if (!terminalLog) return;
-    const div = document.createElement('div');
-    div.className = `mb-1 ${color}`;
-    div.innerHTML = `<span class="text-slate-600">>></span> ${msg}`;
-    terminalLog.appendChild(div);
-    terminalLog.scrollTop = terminalLog.scrollHeight;
-}
+    function addToLog(msg, color = "text-slate-400") {
+        const div = document.createElement('div');
+        div.className = `mb-1 ${color}`;
+        div.innerHTML = `<span class="text-slate-700">>></span> ${msg}`;
+        terminalLog.appendChild(div);
+        terminalLog.scrollTop = terminalLog.scrollHeight;
+    }
 
-if (cliInput) {
-    cliInput.addEventListener('keypress', function (e) {
+    cliInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
-            const fullCmd = this.value.trim();
-            const cmd = fullCmd.toLowerCase();
-            this.value = ''; 
+            const cmd = cliInput.value.trim().toLowerCase();
+            cliInput.value = '';
             
-            if (cmd === '') return;
-            addToLog(fullCmd, 'text-amber-400');
+            addToLog(cmd, "text-amber-400");
 
-            if (cmd === 'help') {
-                addToLog('Commands: menu, status, system info, whoami, clear, logout', 'text-blue-400');
-            } 
-            else if (cmd === 'menu') {
-                addToLog('--- SYSTEM DIRECTORY ---', 'text-amber-400');
-                addToLog('Type command to navigate:', 'text-slate-400');
-                addToLog('> goto biz     (Business Hub)', 'text-emerald-400');
-                addToLog('> goto nest    (Idea Incubator)', 'text-emerald-400');
-                addToLog('> goto vault   (Family Storage)', 'text-emerald-400');
-                addToLog('> goto sandbox (Entertainment)', 'text-emerald-400');
-            }
-            else if (cmd === 'system info') {
-                addToLog('--- KETICK_HUB_OS_INFO ---', 'text-blue-400');
-                addToLog('VERSION: 1.0.4-STABLE', 'text-slate-400');
-                addToLog('ENGINE: VANILLA_JS_CORE', 'text-slate-400');
-                addToLog('ENCRYPTION: AES-256-GCM', 'text-slate-400');
-                addToLog('STATUS: ALL_SYSTEMS_GO', 'text-emerald-500');
-            }
-            else if (cmd === 'clear') terminalLog.innerHTML = '<div class="text-slate-500 mb-2">// Logs cleared.</div>';
-            else if (cmd === 'status') addToLog('OS: KETICK_V1 | RESPONSIVE: TRUE', 'text-emerald-500');
-            else if (cmd === 'whoami') addToLog('USER_ID: ADMIN_01 | ROLE: SUPER_USER', 'text-purple-400');
-            else if (cmd === 'logout') {
-                addToLog('Terminating session...', 'text-red-400');
-                if (typeof KETICK_DB !== 'undefined') setTimeout(() => KETICK_DB.logout(), 1000);
-            }
-            // ROUTING
-            else if (cmd === 'goto nest') { setTimeout(() => window.location.href = 'ideanest.html', 500); }
-            else if (cmd === 'goto biz') { setTimeout(() => window.location.href = 'business.html', 500); }
-            else if (cmd === 'goto vault') { setTimeout(() => window.location.href = 'family.html', 500); }
-            else if (cmd === 'goto sandbox') { setTimeout(() => window.location.href = 'entertainment.html', 500); }
-            
-            // EASTER EGGS
-            else if (cmd === 'matrix') {
-                addToLog('Wake up, Neo...', 'text-emerald-500 font-bold');
-                startMatrix();
-                setTimeout(() => addToLog('Type "exit matrix" to return to reality.', 'text-emerald-400 animate-pulse'), 2000);
-            }
-            else if (cmd === 'exit matrix') {
-                addToLog('Returning to KETICK_OS...', 'text-slate-400');
-                stopMatrix();
-            }
-            else if (cmd === 'ping') {
-                addToLog('PONG. Latency: 1ms. Connection Excellent.', 'text-cyan-400');
-            }
-            else if (cmd === 'sudo rm -rf /') {
-                addToLog('ACCESS DENIED: Critical System files protected. Nice try.', 'text-red-500 font-bold animate-bounce');
-            }
-            else if (cmd.startsWith('add idea')) {
-                const match = fullCmd.match(/add idea ["']?(.*?)["']?$/i);
-                if (match && match[1]) {
-                    if (typeof KETICK_DB !== 'undefined') {
-                        KETICK_DB.save('ideas', { name: match[1], desc: 'Added via CLI', fund: 'TBA' });
-                        refreshStats();
-                        addToLog(`[SUCCESS] Idea "${match[1]}" added.`, 'text-emerald-400');
-                    }
-                } else addToLog('Format: add idea "Nama Idea"', 'text-red-400');
-            } 
-            else {
-                addToLog(`Unknown command. Type 'help' or 'menu'.`, 'text-red-400');
-            }
+            if (cmd === 'help') addToLog("Available commands: deploy, status, clear, menu, logout", "text-blue-400");
+            else if (cmd.startsWith('deploy')) addToLog("Initializing deployment sequence... Success.", "text-emerald-500");
+            else if (cmd === 'clear') terminalLog.innerHTML = "";
+            else if (cmd === 'logout') KETICK_DB.logout();
+            else addToLog("ERR: Command not found. Use 'help'", "text-red-500");
         }
     });
-}
 
-document.querySelectorAll('#project-tree li').forEach(item => {
-    item.addEventListener('click', function() {
-        const folder = this.innerText.replace(/[├──|└──]/g, '').trim();
-        addToLog(`Accessing directory: /${folder}`, 'text-blue-400');
-        setTimeout(() => {
-            if(folder === 'business/') window.location.href = 'business.html';
-            if(folder === 'ideanest/') window.location.href = 'ideanest.html';
-            if(folder === 'entertainment/') window.location.href = 'entertainment.html';
-            if(folder === 'family/') window.location.href = 'family.html';
-        }, 800);
-    });
 });
-
-setTimeout(refreshStats, 500);
