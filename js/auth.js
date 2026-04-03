@@ -3,23 +3,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const logoutBtn = document.getElementById("logoutBtn");
     const errorMsg = document.getElementById("error-msg");
 
-    // === 1. PROSES LOG MASUK (login.html) ===
+    // LOG IN
     if (loginForm) {
         loginForm.addEventListener("submit", (e) => {
-            e.preventDefault(); // Halang page reload
+            e.preventDefault(); 
 
             const user = document.getElementById("username").value;
             const pass = document.getElementById("password").value;
 
-            // MOCK API CHECK (Gantikan ini dengan kod API sebenar anda nanti)
-            // Cth API: fetch('https://api.ketick.my/auth', { ... })
-            if (user === "admin" && pass === "ketick2026") { // <-- ID & Password sementara
+            // Kredensial sementara untuk Admin Vault
+            if (user === "admin" && pass === "ketick2026") { 
                 
-                // Simpan token/status dalam session
                 sessionStorage.setItem("ketickAuth", "true");
-                
-                // Animasi sikit sebelum masuk
-                loginForm.innerHTML = '<h3 style="color: var(--accent-blue);">ACCESS GRANTED.<br>Connecting to mainframe...</h3>';
+                loginForm.innerHTML = '<h3 style="color: var(--accent-blue); font-family: var(--font-heading);">ACCESS GRANTED.<br><span style="font-size:0.9rem; color:var(--text-muted);">Connecting to mainframe...</span></h3>';
                 
                 setTimeout(() => {
                     window.location.href = "admin-dashboard.html";
@@ -27,8 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             } else {
                 errorMsg.style.display = "block";
-                
-                // Goncang form sikit kalau salah (Visual cue)
                 const loginBox = document.querySelector('.login-box');
                 loginBox.style.transform = "translateX(-10px)";
                 setTimeout(() => loginBox.style.transform = "translateX(10px)", 100);
@@ -37,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // === 2. PROSES LOG KELUAR (admin-dashboard.html) ===
+    // LOG OUT
     if (logoutBtn) {
         logoutBtn.addEventListener("click", () => {
             sessionStorage.removeItem("ketickAuth");
