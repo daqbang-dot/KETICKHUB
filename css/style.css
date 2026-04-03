@@ -1,14 +1,15 @@
-/* --- CSS VARIABLES --- */
+/* --- CSS VARIABLES (Updated for Minimalist Professional) --- */
 :root {
-    --bg-color-1: #0b0914;
-    --bg-color-2: #160f29;
-    --accent-blue: #00f0ff;
-    --accent-purple: #8a2be2;
-    --accent-magenta: #ff00ff;
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --text-main: #e0e0e0;
-    --text-muted: #8892b0;
+    /* Palet warna yang lebih lembut dan redup */
+    --bg-color-1: #101214; /* Charcoal gelap */
+    --bg-color-2: #1a1d21; /* Charcoal sedikit lebih terang */
+    --accent-blue: #70a1ff; /* Abu-abu kebiruan redup, bukan cyan terang */
+    --accent-purple: #a55eea; /* Ungu redup */
+    --accent-magenta: #ff6b81; /* Magenta/pink lembut */
+    --glass-bg: rgba(255, 255, 255, 0.02); /* Lebih transparan */
+    --glass-border: rgba(255, 255, 255, 0.05); /* Border lebih halus */
+    --text-main: #f1f2f6; /* Putih lembut */
+    --text-muted: #a4b0be; /* Abu-abu teks */
     --font-heading: 'Orbitron', sans-serif;
     --font-body: 'Inter', sans-serif;
 }
@@ -28,27 +29,27 @@ body {
     line-height: 1.6;
 }
 
-/* --- BACKGROUND ANIMATION --- */
+/* --- BACKGROUND ANIMATION (Subtler) --- */
 .bg-animated {
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
     z-index: -2;
-    background: radial-gradient(circle at 15% 50%, rgba(138, 43, 226, 0.15), transparent 40%),
-                radial-gradient(circle at 85% 30%, rgba(0, 240, 255, 0.15), transparent 40%),
-                radial-gradient(circle at 50% 80%, rgba(255, 0, 255, 0.1), transparent 40%);
-    animation: pulseGlow 15s infinite alternate;
+    background: radial-gradient(circle at 15% 50%, rgba(165, 94, 234, 0.05), transparent 40%),
+                radial-gradient(circle at 85% 30%, rgba(112, 161, 255, 0.05), transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(255, 107, 129, 0.03), transparent 40%);
+    animation: pulseGlow 20s infinite alternate; /* Lebih lambat */
 }
 
 #particle-canvas {
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
     z-index: -1;
-    opacity: 0.6;
+    opacity: 0.3; /* Lebih redup */
 }
 
 @keyframes pulseGlow {
-    0% { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(1.1); opacity: 1; }
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.05); opacity: 0.8; }
 }
 
 /* --- LAYOUT & GLASSMORPHISM --- */
@@ -60,25 +61,26 @@ body {
 
 .glass-panel {
     background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(20px); /* Efek blur lebih kuat */
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-radius: 12px; /* Border radius lebih kecil untuk kesan profesional */
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2); /* Shadow lebih halus */
 }
 
 .section-title {
     font-family: var(--font-heading);
     text-align: center;
-    margin-bottom: 40px;
-    font-size: 2.5rem;
+    margin-bottom: 50px;
+    font-size: 2.2rem;
     color: #fff;
-    text-shadow: 0 0 10px var(--accent-blue);
-    letter-spacing: 2px;
+    /* Ganti neon shadow dengan text-shadow yang sangat halus */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    letter-spacing: 1.5px;
 }
 
 section {
-    padding: 100px 0;
+    padding: 80px 0;
 }
 
 /* --- HEADER --- */
@@ -86,23 +88,24 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
-    margin-bottom: 50px;
+    padding: 15px 30px;
+    margin-bottom: 40px;
 }
 
 .logo {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--accent-blue);
-    text-shadow: 0 0 8px var(--accent-blue);
+    text-shadow: 0 0 4px rgba(112, 161, 255, 0.3);
 }
 
 nav a {
     color: var(--text-main);
     text-decoration: none;
-    margin-left: 30px;
-    font-weight: 600;
+    margin-left: 25px;
+    font-size: 0.95rem;
+    font-weight: 500;
     transition: color 0.3s;
 }
 
@@ -113,7 +116,7 @@ nav a:hover {
 /* --- HERO SECTION --- */
 #hero {
     text-align: center;
-    min-height: 70vh;
+    min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -121,55 +124,43 @@ nav a:hover {
 
 .hero-content h1 {
     font-family: var(--font-heading);
-    font-size: 4rem;
+    font-size: 3.5rem;
     color: #fff;
-    margin-bottom: 20px;
-    text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 .hero-content p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--text-muted);
-    max-width: 600px;
-    margin: 0 auto 40px;
+    max-width: 650px;
+    margin: 0 auto 35px;
 }
 
-/* --- GLOWING BUTTON --- */
+/* --- SUBTLE GLOWING BUTTON --- */
 .btn-glow {
     display: inline-block;
-    padding: 15px 40px;
+    padding: 12px 30px;
     font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 600;
     color: #fff;
     text-decoration: none;
-    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
-    border-radius: 50px;
-    border: none;
+    /* Gradient yang lebih redup */
+    background: linear-gradient(90deg, #535c68, #3c444f);
+    border-radius: 6px; /* Lebih kotak */
+    border: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
     position: relative;
     z-index: 1;
     overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.3s;
-    box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
-}
-
-.btn-glow::before {
-    content: '';
-    position: absolute;
-    top: 2px; right: 2px; bottom: 2px; left: 2px;
-    background: var(--bg-color-1);
-    border-radius: 50px;
-    z-index: -1;
-    transition: background 0.3s;
-}
-
-.btn-glow:hover::before {
-    background: transparent;
+    transition: transform 0.2s ease, box-shadow 0.3s, border-color 0.3s;
 }
 
 .btn-glow:hover {
-    box-shadow: 0 0 30px var(--accent-blue);
+    /* Efek glow yang sangat lembut pada hover */
+    box-shadow: 0 0 15px rgba(112, 161, 255, 0.2);
+    border-color: rgba(112, 161, 255, 0.4);
     color: #fff;
 }
 
@@ -177,60 +168,60 @@ nav a:hover {
 .grid-analytics {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    gap: 25px;
 }
 
 .widget {
-    padding: 30px;
+    padding: 25px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.3s;
+    transition: transform 0.3s, border-color 0.3s;
 }
 
 .widget:hover {
-    transform: translateY(-5px);
-    border-color: rgba(0, 240, 255, 0.3);
+    transform: translateY(-3px);
+    border-color: rgba(112, 161, 255, 0.2);
 }
 
 .widget h3 {
     font-family: var(--font-heading);
-    margin-bottom: 20px;
-    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
     color: var(--text-muted);
 }
 
 .widget-content {
-    font-size: 3rem;
+    font-size: 2.8rem;
     font-weight: bold;
     color: var(--accent-blue);
-    text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+    text-shadow: 0 0 8px rgba(112, 161, 255, 0.3);
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
 }
 
 .widget-icon {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: var(--accent-purple);
 }
 
-/* SVG Circular Progress */
+/* SVG Circular Progress (Subtler) */
 .circular-progress {
     position: relative;
-    width: 150px; height: 150px;
+    width: 140px; height: 140px;
 }
 .circular-progress svg {
-    width: 150px; height: 150px;
+    width: 140px; height: 140px;
     transform: rotate(-90deg);
 }
 .circular-progress circle {
     fill: none;
-    stroke-width: 8;
+    stroke-width: 6; /* Sedikit lebih tipis */
     stroke-linecap: round;
 }
-.circular-progress .bg { stroke: rgba(255,255,255,0.1); }
+.circular-progress .bg { stroke: rgba(255,255,255,0.05); }
 .circular-progress .progress {
     stroke: var(--accent-magenta);
     stroke-dasharray: 251; /* 2 * pi * r (r=40) */
@@ -243,23 +234,24 @@ nav a:hover {
 .circular-progress .percentage {
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 1.8rem; font-family: var(--font-heading);
+    font-size: 1.7rem; font-family: var(--font-heading);
+    color: #fff;
 }
 
 /* CSS Live Chart Simulation */
 .chart-container {
     display: flex;
     align-items: flex-end;
-    gap: 8px;
-    height: 100px;
+    gap: 7px;
+    height: 90px;
     width: 100%;
     justify-content: center;
 }
 .chart-container .bar {
-    width: 20px;
-    background: linear-gradient(to top, var(--accent-purple), var(--accent-blue));
-    border-radius: 4px 4px 0 0;
-    height: 0; /* Animated by JS/CSS class later */
+    width: 18px;
+    background: linear-gradient(to top, #4a69bd, var(--accent-blue)); /* Warna lebih redup */
+    border-radius: 3px 3px 0 0;
+    height: 0;
     transition: height 1.5s ease-out;
 }
 .chart-container.animate .bar {
@@ -268,123 +260,86 @@ nav a:hover {
 }
 
 @keyframes equalizer {
-    0% { transform: scaleY(0.8); }
-    100% { transform: scaleY(1.1); }
+    0% { transform: scaleY(0.9); }
+    100% { transform: scaleY(1.05); }
 }
 
 /* --- SERVICES --- */
 .grid-services {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
 }
 
 .service-card {
-    padding: 40px 30px;
+    padding: 35px 25px;
     text-align: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .service-card i {
-    font-size: 3rem;
+    font-size: 2.8rem;
     color: var(--accent-magenta);
-    margin-bottom: 20px;
+    margin-bottom: 18px;
+    opacity: 0.9;
 }
 
 .service-card h3 {
     font-family: var(--font-heading);
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    font-size: 1.2rem;
 }
 
 .service-card p {
     color: var(--text-muted);
+    font-size: 0.95rem;
 }
 
 .service-card:hover {
-    transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
-    box-shadow: 0 15px 40px rgba(255, 0, 255, 0.2);
-    border-color: rgba(255, 0, 255, 0.4);
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* --- PORTFOLIO --- */
-.grid-portfolio {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 30px;
-}
-
-.portfolio-item {
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
-    border-radius: 16px;
-}
-
-.portfolio-item:nth-child(1) { background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80'); }
-.portfolio-item:nth-child(2) { background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80'); }
-
-.portfolio-overlay {
-    position: absolute;
-    bottom: -100%;
-    left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to top, rgba(11, 9, 20, 0.9), transparent);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 30px;
-    transition: bottom 0.4s ease;
-}
-
-.portfolio-item:hover .portfolio-overlay {
-    bottom: 0;
-}
-
-.portfolio-overlay h3 { font-family: var(--font-heading); color: var(--accent-blue); }
-
-/* --- TESTIMONIALS --- */
+/* --- TESTIMONIALS (Updated Style) --- */
 .grid-testimonials {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
 }
 
 .chat-bubble {
-    padding: 30px;
+    padding: 25px;
     position: relative;
 }
 
-.chat-bubble::before {
-    content: ''; position: absolute; bottom: -15px; left: 40px;
-    border-width: 15px 15px 0; border-style: solid;
-    border-color: var(--glass-border) transparent transparent transparent;
-}
+/* Hapus segitiga chat untuk kesan lebih minimalis */
+.chat-bubble::before { display: none; }
 
 .chat-header {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 15px;
+    gap: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 12px;
 }
 
 .avatar {
-    width: 50px; height: 50px;
+    width: 45px; height: 45px;
     border-radius: 50%;
-    border: 2px solid var(--accent-purple);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
-.chat-header strong { display: block; font-family: var(--font-heading); }
-.chat-header span { font-size: 0.8rem; color: var(--accent-blue); }
-.chat-text { font-style: italic; color: #ccc; }
+.chat-header strong { display: block; font-family: var(--font-heading); font-size: 1rem; color: #fff; }
+.chat-header span { font-size: 0.75rem; color: var(--accent-blue); }
+.chat-text { font-style: normal; color: #ccc; font-size: 0.95rem; }
 
 /* --- FOOTER --- */
 footer {
-    margin-top: 50px;
-    padding: 50px;
+    margin-top: 40px;
+    padding: 40px;
     text-align: center;
 }
 
@@ -393,30 +348,30 @@ footer {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 30px;
-    margin-bottom: 30px;
+    gap: 25px;
+    margin-bottom: 25px;
 }
 
-.footer-cta h3 { font-family: var(--font-heading); margin-bottom: 20px; font-size: 1.8rem; }
+.footer-cta h3 { font-family: var(--font-heading); margin-bottom: 15px; font-size: 1.6rem; color: #fff; }
 .footer-social a {
-    color: var(--text-main); font-size: 1.5rem; margin-left: 20px; transition: color 0.3s;
+    color: var(--text-muted); font-size: 1.3rem; margin-left: 18px; transition: color 0.3s;
 }
 .footer-social a:hover { color: var(--accent-blue); }
 .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 20px; color: var(--text-muted); font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 18px; color: var(--text-muted); font-size: 0.85rem;
 }
 
-/* --- ANIMATIONS & UTILS (Scroll Reveal) --- */
+/* --- ANIMATIONS & UTILS (Subtler) --- */
 .fade-in, .slide-down {
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Lebih cepat */
     will-change: opacity, visibility;
 }
 
-.fade-in { transform: translateY(40px); }
-.slide-down { transform: translateY(-40px); }
+.fade-in { transform: translateY(20px); } /* Jarak gerak lebih kecil */
+.slide-down { transform: translateY(-20px); }
 
 .fade-in.is-visible, .slide-down.is-visible {
     opacity: 1;
@@ -426,8 +381,10 @@ footer {
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-    .hero-content h1 { font-size: 2.5rem; }
-    header { flex-direction: column; gap: 20px; }
-    nav a { margin: 0 10px; }
+    .hero-content h1 { font-size: 2.2rem; }
+    header { flex-direction: column; gap: 15px; padding: 15px; }
+    nav a { margin: 0 8px; font-size: 0.9rem; }
+    .section-title { font-size: 1.8rem; }
+    footer { padding: 30px 20px; }
     .footer-content { flex-direction: column; text-align: center; }
 }
