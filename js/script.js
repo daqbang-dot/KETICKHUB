@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(el);
     });
 
-    // 2. MAGNETIC BUTTON EFFECT
+    // 2. MAGNETIC BUTTON EFFECT (Subtler)
     const magneticBtns = document.querySelectorAll('.magnetic-btn');
     magneticBtns.forEach(btn => {
         btn.addEventListener('mousemove', (e) => {
@@ -60,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const x = e.pageX - position.left - position.width / 2;
             const y = e.pageY - position.top - position.height / 2;
             
-            // Move button slightly towards cursor
-            btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            // Move button slightly towards cursor (Reduced effect)
+            btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
         });
 
         btn.addEventListener('mouseleave', () => {
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 3. CANVAS BACKGROUND PARTICLES (Motion Graphics)
+    // 3. CANVAS BACKGROUND PARTICLES (Motion Graphics - Subtler)
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     
@@ -88,11 +88,11 @@ document.addEventListener("DOMContentLoaded", () => {
         constructor() {
             this.x = Math.random() * w;
             this.y = Math.random() * h;
-            this.size = Math.random() * 2 + 0.5;
-            this.speedX = Math.random() * 1 - 0.5;
-            this.speedY = Math.random() * 1 - 0.5;
-            // Glowing colors (blue and purple variations)
-            const colors = ['rgba(0, 240, 255, 0.5)', 'rgba(138, 43, 226, 0.5)', 'rgba(255, 255, 255, 0.3)'];
+            this.size = Math.random() * 1.5 + 0.3; // Smaller particles
+            this.speedX = Math.random() * 0.5 - 0.25; // Slower speed
+            this.speedY = Math.random() * 0.5 - 0.25; // Slower speed
+            // Muted colors
+            const colors = ['rgba(112, 161, 255, 0.3)', 'rgba(165, 94, 234, 0.3)', 'rgba(255, 255, 255, 0.2)'];
             this.color = colors[Math.floor(Math.random() * colors.length)];
         }
         update() {
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function initParticles() {
         particlesArray = [];
-        let numberOfParticles = (w * h) / 15000; // Adjust density based on screen size
+        let numberOfParticles = (w * h) / 20000; // Reduced density
         for (let i = 0; i < numberOfParticles; i++) {
             particlesArray.push(new Particle());
         }
@@ -125,16 +125,16 @@ document.addEventListener("DOMContentLoaded", () => {
             particlesArray[i].update();
             particlesArray[i].draw();
             
-            // Draw connecting lines between close particles (Matrix/Network effect)
+            // Draw connecting lines (Fewer, fainter lines)
             for (let j = i; j < particlesArray.length; j++) {
                 const dx = particlesArray[i].x - particlesArray[j].x;
                 const dy = particlesArray[i].y - particlesArray[j].y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
-                if (distance < 100) {
+                if (distance < 80) { // Reduced distance for connection
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(0, 240, 255, ${0.1 - distance/1000})`;
-                    ctx.lineWidth = 0.5;
+                    ctx.strokeStyle = `rgba(112, 161, 255, ${0.05 - distance/1600})`;
+                    ctx.lineWidth = 0.3;
                     ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
                     ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
                     ctx.stroke();
