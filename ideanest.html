@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IdeaNest | KETICK HUB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600&display=swap');
+        .font-mono { font-family: 'Fira Code', monospace; }
+        .font-sans { font-family: 'Inter', sans-serif; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0F172A; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="bg-[#0F172A] text-slate-300 font-sans h-screen flex flex-col overflow-hidden page-fade-in">
+
+    <header class="border-b border-slate-700/50 bg-[#1E293B]/80 p-4 flex justify-between items-center text-sm backdrop-blur-sm">
+        <div class="flex items-center gap-6">
+            <div class="flex items-center gap-2">
+                <span class="text-amber-400 font-bold text-xl tracking-wider font-mono">IdeaNest</span>
+                <span class="text-slate-500 font-mono text-xs hidden sm:inline">by KETICK HUB</span>
+            </div>
+            <nav class="hidden md:flex gap-4 font-mono text-xs">
+                <a href="index.html" class="text-slate-400 hover:text-emerald-400 transition-colors">[ <span class="text-slate-500">cd ..</span> /Command_Center ]</a>
+                <span class="text-amber-400 border-b border-amber-400/50">/Incubator</span>
+                <a href="#" class="text-slate-400 hover:text-amber-400 transition-colors">/Archives</a>
+            </nav>
+        </div>
+        <div class="flex items-center gap-4 font-mono text-xs">
+            <span class="text-emerald-400 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> SYSTEM: LIVE</span>
+        </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto p-6 flex flex-col lg:flex-row gap-6 max-w-7xl mx-auto w-full">
+        
+        <section class="flex-[2] flex flex-col gap-4">
+            <div class="border-b border-slate-700 pb-2 mb-2 flex justify-between items-end">
+                <h2 class="font-mono text-lg text-slate-200">ACTIVE_PIPELINE</h2>
+                <span class="font-mono text-xs text-amber-400 bg-amber-400/10 px-2 py-1 rounded">7 IDEAS INCUBATING</span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="idea-grid">
+                <div class="bg-[#1E293B] border border-slate-700/50 rounded-lg p-5 shadow-lg hover:border-amber-400/30 transition-all group">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-mono text-amber-400 font-semibold">Projek Drone Pintar</h3>
+                        <span class="text-[10px] font-mono text-emerald-400 border border-emerald-400/30 px-1 rounded">PHASE 2</span>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-4 line-clamp-2">Sistem penghantaran menggunakan drone berkuasa AI untuk kawasan pedalaman.</p>
+                    <div class="w-full bg-slate-800 rounded-full h-1.5 mb-2">
+                        <div class="bg-amber-400 h-1.5 rounded-full" style="width: 45%"></div>
+                    </div>
+                    <div class="flex justify-between text-xs font-mono text-slate-500">
+                        <span>Funded: 45%</span>
+                        <button class="text-blue-400 hover:text-blue-300 group-hover:underline">> View_Specs</button>
+                    </div>
+                </div>
+
+                <div class="bg-[#1E293B] border border-slate-700/50 rounded-lg p-5 shadow-lg hover:border-amber-400/30 transition-all group">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="font-mono text-amber-400 font-semibold">Eco-Packaging</h3>
+                        <span class="text-[10px] font-mono text-blue-400 border border-blue-400/30 px-1 rounded">PHASE 1</span>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-4 line-clamp-2">Pembungkusan biodegradasi dari sisa pertanian tempatan untuk IKS.</p>
+                    <div class="w-full bg-slate-800 rounded-full h-1.5 mb-2">
+                        <div class="bg-blue-400 h-1.5 rounded-full" style="width: 15%"></div>
+                    </div>
+                    <div class="flex justify-between text-xs font-mono text-slate-500">
+                        <span>Funded: 15%</span>
+                        <button class="text-blue-400 hover:text-blue-300 group-hover:underline">> View_Specs</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="flex-[1] flex flex-col gap-4">
+            <div class="border-b border-slate-700 pb-2 mb-2">
+                <h2 class="font-mono text-lg text-slate-200">DEPLOY_NEW_IDEA</h2>
+            </div>
+            
+            <div class="bg-black/40 border border-slate-700/50 rounded-lg p-5 shadow-lg flex flex-col h-full relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent"></div>
+                
+                <form id="idea-form" class="flex flex-col gap-4 flex-1">
+                    <div class="flex flex-col gap-1">
+                        <label class="font-mono text-xs text-slate-400">PROJECT_NAME <span class="text-red-400">*</span></label>
+                        <input type="text" id="input-name" required placeholder="e.g. Sistem AI KETICK" class="bg-[#0F172A] border border-slate-600 rounded p-2 text-sm text-amber-400 font-mono outline-none focus:border-amber-400/50 placeholder-slate-700">
+                    </div>
+                    
+                    <div class="flex flex-col gap-1">
+                        <label class="font-mono text-xs text-slate-400">DESCRIPTION <span class="text-red-400">*</span></label>
+                        <textarea id="input-desc" required rows="4" placeholder="Brief explanation of the innovation..." class="bg-[#0F172A] border border-slate-600 rounded p-2 text-sm text-slate-300 font-sans outline-none focus:border-amber-400/50 placeholder-slate-700 resize-none"></textarea>
+                    </div>
+
+                    <div class="flex flex-col gap-1">
+                        <label class="font-mono text-xs text-slate-400">TARGET_FUNDING (MYR)</label>
+                        <div class="flex items-center bg-[#0F172A] border border-slate-600 rounded focus-within:border-amber-400/50">
+                            <span class="pl-3 text-slate-500 font-mono text-sm">RM</span>
+                            <input type="number" id="input-fund" placeholder="50000" class="bg-transparent border-none p-2 text-sm text-emerald-400 font-mono outline-none w-full placeholder-slate-700">
+                        </div>
+                    </div>
+
+                    <div class="mt-auto pt-4">
+                        <button type="submit" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-amber-400 text-amber-400 font-mono text-sm py-2 rounded transition-all flex justify-center items-center gap-2">
+                            <span>> INITIALIZE_DEPLOYMENT</span>
+                        </button>
+                    </div>
+                </form>
+
+                <div id="form-log" class="mt-4 pt-4 border-t border-slate-700/50 font-mono text-[10px] text-slate-500 min-h-[60px]">
+                    // Waiting for input...
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <footer class="border-t border-slate-700/50 bg-[#0F172A] p-2 text-center">
+        <span class="font-mono text-[10px] text-slate-500">© 2026 KETICK HUB | SECURE_CONNECTION</span>
+    </footer>
+    
+    <script src="js/core.js"></script>
+    <script src="js/ideanest.js"></script>
+</body>
+</html>

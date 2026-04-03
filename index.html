@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KETICK_OS - Command Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/globals.css">
+    
+    <style>
+        /* Kekalkan style font di sini atau pindah ke globals.css */
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
+        .font-mono { font-family: 'Fira Code', monospace; }
+    </style>
+</head>
+<body class="bg-[#0F172A] text-slate-300 font-sans h-screen flex flex-col overflow-hidden page-fade-in">
+  
+    <canvas id="matrix-canvas"></canvas>
+
+    <header class="border-b border-slate-700/50 bg-[#1E293B]/50 p-4 flex justify-between items-center text-xs font-mono relative z-20">
+        <div class="flex items-center gap-4">
+            <span class="text-amber-400 font-bold text-lg tracking-widest">KETICK_OS</span>
+            <span class="text-emerald-400 hidden sm:inline">SYSTEM_STATUS: OPTIMAL</span>
+            <span class="text-slate-400 hidden md:inline">ACTIVE_SUBDOMAINS: 4</span>
+        </div>
+        <div class="text-slate-400">
+            USER: ADMIN_01 | <span id="clock">00:00:00</span>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden relative z-20">
+        
+        <aside class="w-64 border-r border-slate-700/50 p-4 font-mono text-sm hidden md:block overflow-y-auto">
+            <h2 class="text-slate-500 mb-4 border-b border-slate-700 pb-2">PROJECT_TREE</h2>
+            <ul class="space-y-2 text-slate-400" id="project-tree">
+                <li class="hover:text-amber-400 cursor-pointer">├── apps/</li>
+                <li class="hover:text-amber-400 cursor-pointer pl-4">├── business/</li>
+                <li class="hover:text-amber-400 cursor-pointer pl-4">├── entertainment/</li>
+                <li class="hover:text-amber-400 cursor-pointer pl-4">├── family/</li>
+                <li class="hover:text-amber-400 cursor-pointer pl-4">└── ideanest/</li>
+            </ul>
+        </aside>
+
+        <main class="flex-1 p-6 overflow-y-auto flex flex-col gap-6">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div id="widget-ideanest" class="bg-[#1E293B] border border-slate-700/50 rounded-lg p-4 shadow-lg transition-all hover:border-amber-400/50">
+                    <h3 class="font-mono text-amber-400 text-sm mb-2 border-b border-slate-700 pb-2">IDEANEST_PIPELINE</h3>
+                    <div class="h-32 flex items-center justify-center text-slate-500 border border-dashed border-slate-600 rounded relative">
+                        <canvas id="chartIdea"></canvas> 
+                    </div>
+                    <p class="text-xs font-mono mt-3 text-slate-400">Status: <span class="text-amber-400">7 in Incubation</span></p>
+                </div>
+
+                <div id="widget-business" class="bg-[#1E293B] border border-slate-700/50 rounded-lg p-4 shadow-lg transition-all hover:border-blue-400/50">
+                    <h3 class="font-mono text-blue-400 text-sm mb-2 border-b border-slate-700 pb-2">BIZ_HUB_PERFORMANCE</h3>
+                    <div class="h-32 flex items-center justify-center text-slate-500 border border-dashed border-slate-600 rounded font-mono text-[10px]">
+                        [ REVENUE_STREAM: ACTIVE ]
+                    </div>
+                    <p class="text-xs font-mono mt-3 text-slate-400">Total Partners: <span class="text-blue-400">12 Active</span></p>
+                </div>
+
+                <div class="bg-[#1E293B] border border-slate-700/50 rounded-lg p-4 shadow-lg transition-all hover:border-emerald-400/50">
+                    <h3 class="font-mono text-emerald-400 text-sm mb-2 border-b border-slate-700 pb-2">SYSTEM_HEALTH</h3>
+                    <ul class="text-sm font-mono space-y-3 mt-4">
+                        <li class="flex justify-between"><span>CPU Load:</span> <span id="cpu-val" class="text-emerald-400">0%</span></li>
+                        <li class="flex justify-between"><span>Memory:</span> <span class="text-emerald-400">4GB/16GB</span></li>
+                        <li class="flex justify-between"><span>Latency:</span> <span class="text-emerald-400">25ms</span></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="bg-black/40 border border-slate-700/50 rounded-lg p-4 font-mono text-xs flex-1 min-h-[150px] overflow-y-auto" id="terminal-log">
+                <div class="text-slate-500 mb-2">// KETICK_OS Terminal Initialized...</div>
+                <div class="text-emerald-500">[READY] Awaiting commands...</div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="border-t border-slate-700/50 bg-[#0F172A] p-3 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] relative z-30">
+        <div class="flex items-center gap-2 font-mono text-sm max-w-4xl">
+            <span class="text-emerald-400 font-bold">></span>
+            <input 
+                type="text" 
+                id="cli-input"
+                autocomplete="off"
+                placeholder="Taip 'help' atau 'menu'..." 
+                class="w-full bg-transparent border-none outline-none text-amber-400 placeholder-slate-600 focus:ring-0"
+            />
+        </div>
+    </footer>
+
+    <script src="js/core.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
