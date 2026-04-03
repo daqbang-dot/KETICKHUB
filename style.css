@@ -1,0 +1,50 @@
+/* Custom Glassmorphism */
+.glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Radar Sweep Animation */
+.radar-sweep {
+    background: conic-gradient(from 0deg, transparent 70%, rgba(34, 211, 238, 0.1) 80%, rgba(34, 211, 238, 0.8) 100%);
+    animation: sweep 4s linear infinite;
+    border-radius: 50%;
+}
+@keyframes sweep {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Core Heartbeat Pulse */
+.core-pulse {
+    animation: coreBreathing 3s ease-in-out infinite alternate;
+}
+@keyframes coreBreathing {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Sparkline Animation */
+.sparkline-path {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: drawSparkline 4s linear infinite alternate;
+}
+@keyframes drawSparkline {
+    to { stroke-dashoffset: 0; }
+}
+
+/* Liquid Button Background Animation */
+.liquid-bg {
+    background-size: 200% 200%;
+    animation: liquidFlow 3s ease infinite;
+    z-index: 0;
+}
+@keyframes liquidFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
