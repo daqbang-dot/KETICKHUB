@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ketick Ecosystem & Command Center - Professional Edition</title>
+    <title>Ketick Ecosystem & Command Center</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -39,6 +39,35 @@
                 <a href="https://ketick.my" class="btn-glow magnetic-btn">
                     <i class="fa-solid fa-arrow-right-long"></i> Terokai Ketick.my
                 </a>
+            </div>
+        </section>
+
+        <section id="system-architecture">
+            <h2 class="section-title fade-in">System Architecture</h2>
+            <div class="terminal-window glass-panel fade-in">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="terminal-title">admin@ketick-core:~</span>
+                </div>
+                <div class="terminal-body">
+                    <pre><code class="language-tree">
+<span class="keyword">user@ketick</span>:<span class="dir">~/command-center</span>$ tree -L 2
+.
+├── <span class="dir">css/</span>
+│   └── <span class="file">style.css</span>           <span class="comment"># UI/UX Core Styling (Minimalist Pro)</span>
+├── <span class="dir">js/</span>
+│   ├── <span class="file">script.js</span>           <span class="comment"># Intersection Observers & Canvas Particles</span>
+│   └── <span class="file">auth.js</span>             <span class="comment"># Vault Security & Session Validation</span>
+├── <span class="file">index.html</span>            <span class="comment"># Public Ecosystem Interface</span>
+├── <span class="file">login.html</span>            <span class="comment"># Encrypted Vault Gateway</span>
+└── <span class="file">admin-dashboard.html</span>  <span class="comment"># Master Command Center (Classified)</span>
+
+3 directories, 6 files
+<span class="keyword">user@ketick</span>:<span class="dir">~/command-center</span>$ <span class="cursor">_</span>
+                    </code></pre>
+                </div>
             </div>
         </section>
 
@@ -81,13 +110,11 @@
                     <h3>Entertainment Hub</h3>
                     <p>Akses kepada hiburan digital, striming, dan ruang rehat siber yang direka khas untuk ketenangan.</p>
                 </div>
-                
                 <div class="glass-panel service-card fade-in">
                     <i class="fa-solid fa-vault" style="color: var(--accent-magenta);"></i>
                     <h3>KetickFamily Vault</h3>
                     <p>Peti kebal digital berenkripsi tinggi untuk menyimpan dokumen warisan dan memori keluarga yang paling berharga.</p>
                 </div>
-                
                 <div class="glass-panel service-card fade-in">
                     <i class="fa-solid fa-lightbulb" style="color: var(--accent-purple);"></i>
                     <h3>IdeaNest</h3>
