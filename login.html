@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault Access - Ketick</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Gaya tambahan khusus untuk form login */
+        .login-container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-box {
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            text-align: center;
+        }
+        .input-group { margin-bottom: 25px; text-align: left; }
+        .input-group label { display: block; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 8px; font-family: var(--font-heading); }
+        .input-group input {
+            width: 100%; padding: 12px 15px;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px; color: #fff;
+            outline: none; transition: border 0.3s;
+        }
+        .input-group input:focus { border-color: var(--accent-blue); box-shadow: 0 0 10px rgba(0, 240, 255, 0.2); }
+        #error-msg { color: #ff4757; font-size: 0.85rem; display: none; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="bg-animated"></div>
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="container login-container">
+        <div class="glass-panel login-box fade-in is-visible">
+            <h2 style="font-family: var(--font-heading); color: var(--accent-magenta); margin-bottom: 10px;">
+                <i class="fa-solid fa-shield-halved"></i> SYSTEM VAULT
+            </h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 0.9rem;">Authentication Required</p>
+            
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Admin ID</label>
+                    <input type="text" id="username" required autocomplete="off" placeholder="Enter ID">
+                </div>
+                <div class="input-group">
+                    <label>Passcode</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <div id="error-msg">Akses Ditolak. Sila semak ID/Passcode.</div>
+                
+                <button type="submit" class="btn-glow magnetic-btn" style="width: 100%; margin-top: 10px;">
+                    Initialize Connection
+                </button>
+            </form>
+            <a href="index.html" style="display: block; margin-top: 20px; color: var(--text-muted); text-decoration: none; font-size: 0.8rem;">&larr; Kembali ke Ekosistem</a>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
