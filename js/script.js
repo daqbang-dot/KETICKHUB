@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. CANVAS PARTICLES
     const canvas = document.getElementById('particle-canvas');
-    if(!canvas) return; // Prevent error on pages without canvas
+    if(!canvas) return; 
     
     const ctx = canvas.getContext('2d');
     let particlesArray = [];
