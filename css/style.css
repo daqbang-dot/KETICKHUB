@@ -63,7 +63,7 @@ nav a:hover { color: var(--accent-blue); }
 .btn-glow:hover { background: rgba(255,255,255,0.1); border-color: var(--accent-blue); }
 
 /* =========================================
-   REALISTIC DINO SANCTUARY
+   CYBER DINO SANCTUARY
 ========================================= */
 #dino-sanctuary-zone {
     display: flex; justify-content: center; padding: 20px 0;
@@ -71,38 +71,53 @@ nav a:hover { color: var(--accent-blue); }
 
 .sanctuary-box {
     width: 100%; height: 320px; position: relative; overflow: hidden;
-    border: 2px solid rgba(88, 166, 255, 0.4); /* Glowing blue frame */
-    box-shadow: 0 0 40px rgba(88, 166, 255, 0.15), inset 0 0 40px rgba(0,0,0,0.8);
+    border: 2px solid rgba(188, 140, 255, 0.4); 
+    box-shadow: 0 0 40px rgba(188, 140, 255, 0.15), inset 0 0 40px rgba(0,0,0,0.8);
     border-radius: 16px;
+    background-color: #050505; 
 }
 
 .sanctuary-bg {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    /* Menggunakan imej padang pasir/flora abstrak yang digelapkan */
-    background: linear-gradient(to top, #0f1115 10%, transparent 60%), 
-                url('https://images.unsplash.com/photo-1542224566-6e85f2e6772f?auto=format&fit=crop&q=80') center/cover;
-    opacity: 0.5; z-index: 1; filter: grayscale(30%);
+    background: 
+        linear-gradient(to top, #050505 10%, transparent 80%),
+        repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(88, 166, 255, 0.05) 20px),
+        repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(88, 166, 255, 0.05) 20px);
+    opacity: 0.8; z-index: 1;
 }
 
 .realistic-dino {
-    position: absolute; height: 85%; bottom: 10px; left: -300px;
-    z-index: 2; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.8));
-    animation: slowRealisticWalk 35s linear infinite; /* Jalan perlahan */
+    position: absolute; 
+    height: 100%; 
+    bottom: -10px; 
+    left: -300px;
+    z-index: 2; 
+    
+    /* Mix Blend Mode Screen hilangkan background hitam gambar! */
+    mix-blend-mode: screen; 
+    filter: contrast(1.2) drop-shadow(0 0 15px rgba(188, 140, 255, 0.3));
+    
+    animation: slowRealisticWalk 35s linear infinite, realisticDinoHop 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes realisticDinoHop {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
 }
 
 @keyframes slowRealisticWalk {
-    0% { left: -350px; transform: scaleX(1); }
-    45% { left: calc(100% + 50px); transform: scaleX(1); } /* Jalan sampai hujung kanan */
-    46% { left: calc(100% + 50px); transform: scaleX(-1); } /* Pusing badan */
-    52% { left: calc(100% - 250px); transform: scaleX(-1); } /* Mengintai sikit */
-    55% { left: calc(100% - 250px); transform: scaleX(-1); } /* Stop intai */
-    92% { left: -350px; transform: scaleX(-1); } /* Jalan balik kiri */
-    93% { left: -350px; transform: scaleX(1); } /* Pusing balik */
-    100% { left: -350px; transform: scaleX(1); }
+    0% { left: -400px; transform: scaleX(1); }
+    45% { left: calc(100% + 50px); transform: scaleX(1); } 
+    46% { left: calc(100% + 50px); transform: scaleX(-1); } 
+    52% { left: calc(100% - 300px); transform: scaleX(-1); } 
+    55% { left: calc(100% - 300px); transform: scaleX(-1); } 
+    92% { left: -400px; transform: scaleX(-1); } 
+    93% { left: -400px; transform: scaleX(1); } 
+    100% { left: -400px; transform: scaleX(1); }
 }
 
 /* =========================================
-   VIBRANT GLASSMORPHISM CARDS (The Boxes)
+   VIBRANT GLASSMORPHISM CARDS
 ========================================= */
 .grid-6-cards {
     display: grid;
@@ -112,65 +127,30 @@ nav a:hover { color: var(--accent-blue); }
 }
 
 .vibrant-card {
-    height: 160px;
-    border-radius: 16px;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    height: 160px; border-radius: 16px; padding: 25px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden; cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
 }
 
-.vibrant-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-}
+.vibrant-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
 
 .vibrant-card h3 {
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: #fff;
-    z-index: 2;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    font-family: var(--font-body); font-weight: 700; font-size: 1.5rem; color: #fff;
+    z-index: 2; text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-.card-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    z-index: 2;
-}
+.card-bottom { display: flex; justify-content: space-between; align-items: flex-end; z-index: 2; }
 
-.arrow-icon {
-    color: rgba(255,255,255,0.7);
-    font-size: 1.2rem;
-    transition: transform 0.3s;
-}
-
-.vibrant-card:hover .arrow-icon {
-    transform: translateX(5px);
-    color: #fff;
-}
+.arrow-icon { color: rgba(255,255,255,0.7); font-size: 1.2rem; transition: transform 0.3s; }
+.vibrant-card:hover .arrow-icon { transform: translateX(5px); color: #fff; }
 
 .icon-box {
-    width: 45px;
-    height: 45px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.3);
+    width: 45px; height: 45px; background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; color: #fff; border: 1px solid rgba(255,255,255,0.3);
 }
 
 /* Card Gradient Colors */
@@ -180,7 +160,6 @@ nav a:hover { color: var(--accent-blue); }
 .card-purple { background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%); }
 .card-green { background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%); }
 .card-darkblue { background: linear-gradient(135deg, #141E30 0%, #243B55 100%); }
-
 
 /* --- TERMINAL WINDOW (Coding Vibe) --- */
 .terminal-window { max-width: 800px; margin: 0 auto; background: rgba(10, 12, 16, 0.85); border-radius: 8px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
