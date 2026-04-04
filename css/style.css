@@ -63,25 +63,61 @@ nav a:hover { color: var(--accent-magenta); }
 }
 .btn-glow:hover { box-shadow: 0 0 15px rgba(112, 161, 255, 0.2); border-color: rgba(112, 161, 255, 0.4); color: #fff; }
 
-/* --- MINI EASTER EGG (DINO GAME) --- */
-#easter-egg { display: flex; justify-content: center; padding: 20px 20px 60px 20px; }
-.dino-container {
-    width: 100%; max-width: 650px; height: 220px; overflow: hidden; position: relative;
-    border-color: rgba(112, 161, 255, 0.3); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    display: flex; flex-direction: column;
-}
-.dino-header {
-    display: flex; justify-content: space-between; padding: 10px 15px;
-    font-family: 'Fira Code', monospace; font-size: 0.75rem; color: var(--text-muted);
-    border-bottom: 1px solid var(--glass-border); background: rgba(0, 0, 0, 0.3); z-index: 2;
-}
-.dino-header i { color: var(--accent-magenta); margin-right: 5px; }
-.dino-frame {
-    flex-grow: 1; width: 100%; height: 100%; border: none; background-color: transparent;
-    filter: invert(1) hue-rotate(180deg) opacity(0.8); pointer-events: auto;
+/* --- FULL-WIDTH DINO WALKER track & Animations --- */
+#dino-walker-track {
+    width: 100vw; height: 100px; position: fixed; bottom: 0; left: 0;
+    pointer-events: none; z-index: 100; /* Tampal paling atas */
 }
 
-/* --- TERMINAL WINDOW (Coding Vibe) --- */
+.colorful-dino {
+    width: 88px; height: 94px; /* Saiz ngam untuk sprite berwarna */
+    position: absolute; bottom: 10px; left: -100px; /* Mula off-screen ke kiri */
+    
+    /* Panggil imej sprite berwarna */
+    background: url('../images/dino-colored-sprite.png') no-repeat;
+    background-size: contain; /* Saiz ikut frame sprite */
+    image-rendering: pixelated; /* Kekalkan pixel-art sharp */
+    
+    /* Pembolehubah untuk posisi sprite kaki berjalan */
+    --kaki-step: -88px; 
+    
+    /* === JADUAL ANIMASI === */
+    animation: 
+        dinoWalkCycle 0.5s steps(2) infinite, /* Animasi Kaki Berjalan (Cepat) */
+        dinoVoyage 40s linear infinite;        /* Animasi Perjalanan Dari Hujung ke Hujung (Perlahan) */
+}
+
+/* 1. Animasi Cycle Kaki Melangkah */
+@keyframes dinoWalkCycle {
+    0% { background-position: 0 0; }
+    100% { background-position: var(--kaki-step) 0; }
+}
+
+/* 2. Animasi Perjalanan & Turnaround (Peek Behind Page) */
+@keyframes dinoVoyage {
+    /* Mula: Off-screen Left, Facing Right */
+    0% { transform: translateX(0) scaleX(1); }
+    
+    /* 1. Berjalan ke Kanan, Berhenti di Hujung (Peek Right) */
+    10% { transform: translateX(calc(100vw + 50px)) scaleX(1); } /* Hilang sikit off-screen */
+    12% { transform: translateX(calc(100vw - 40px)) scaleX(1); } /* Mengintai sikit off-screen (Paling Kanan) */
+    
+    /* 2. Berhenti Sekejap, Patah Balik (Flip) */
+    15% { transform: translateX(calc(100vw - 40px)) scaleX(-1); } /* Flip facing Left di Kanan */
+    
+    /* 3. Berjalan ke Kiri, Berhenti di Hujung (Peek Left) */
+    25% { transform: translateX(-50px) scaleX(-1); } /* Hilang sikit off-screen Kiri */
+    27% { transform: translateX(40px) scaleX(-1); }  /* Mengintai sikit off-screen (Paling Kiri) */
+    
+    /* 4. Berhenti Sekejap, Patah Balik (Flip Ke Kanan Asal) */
+    30% { transform: translateX(40px) scaleX(1); }   /* Flip facing Right di Kiri */
+    
+    /* Tamat Cycle, Ulang */
+    35% { transform: translateX(0) scaleX(1); }
+    100% { transform: translateX(0) scaleX(1); }
+}
+
+/* === TERMINAL WINDOW (Coding Vibe - Tidak Berubah) --- */
 .terminal-window {
     max-width: 800px; margin: 0 auto; background: rgba(10, 12, 16, 0.85); border-radius: 8px;
     overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -97,7 +133,7 @@ nav a:hover { color: var(--accent-magenta); }
 .terminal-body .cursor { display: inline-block; width: 8px; height: 15px; background-color: #7ee787; vertical-align: middle; animation: blink 1s step-end infinite; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* --- WIDGETS --- */
+/* === WIDGETS --- */
 .grid-analytics { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
 .widget { padding: 25px; text-align: center; display: flex; flex-direction: column; align-items: center; transition: transform 0.3s, border-color 0.3s; }
 .widget:hover { transform: translateY(-3px); border-color: rgba(112, 161, 255, 0.2); }
@@ -150,4 +186,7 @@ footer { margin-top: 40px; padding: 40px; text-align: center; }
     footer { padding: 30px 20px; }
     .footer-content { flex-direction: column; text-align: center; }
     .terminal-body { font-size: 0.75rem; padding: 15px; }
+    
+    /* Dino di mobile mungkin terlalu besar, kita kecilkan sikit */
+    .colorful-dino { width: 66px; height: 70px; --kaki-step: -66px; bottom: 5px; }
 }
