@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ketick Ecosystem & Command Center</title>
+    <title>Ketick Ecosystem - Public Interface</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -28,38 +26,22 @@
                     <i class="fa-solid fa-user-tie"></i> Master Login
                 </a>
                 <a href="#services-grid">Ekosistem</a>
-                <a href="#system-architecture">Arkitektur</a>
             </nav>
         </header>
 
         <section id="hero" class="fade-in">
             <div class="hero-content">
                 <h1 class="glitch-text" data-text="KETICK ECOSYSTEM">KETICK ECOSYSTEM</h1>
-                <p>Pusat arahan digital dan solusi inovatif sehenti. Menerajui transformasi untuk sektor perniagaan, memperkasakan komuniti, dan menghubungkan generasi masa hadapan dengan kecekapan profesional.</p>
+                <p>Pusat arahan digital dan solusi inovatif sehenti. Menerajui transformasi untuk sektor perniagaan, memperkasakan komuniti, dan menghubungkan generasi masa hadapan.</p>
                 <a href="https://ketick.my" class="btn-glow magnetic-btn">
                     <i class="fa-solid fa-arrow-right-long"></i> Terokai Ketick.my
                 </a>
             </div>
         </section>
 
-        <section id="dino-sanctuary-zone" class="fade-in">
-            <div class="sanctuary-box glass-panel">
-                <div class="sanctuary-bg"></div>
-                <video 
-                    src="vid/trex-vid.mp4" 
-                    autoplay 
-                    loop 
-                    muted 
-                    playsinline 
-                    class="realistic-dino cyber-mode">
-                </video>
-            </div>
-        </section>
-
         <section id="services-grid" class="fade-in">
             <h2 class="section-title">Ekosistem Sektor</h2>
             <div class="grid-6-cards">
-                
                 <div class="vibrant-card card-teal">
                     <h3>Perniagaan</h3>
                     <div class="card-bottom">
@@ -67,7 +49,6 @@
                         <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
                     </div>
                 </div>
-
                 <div class="vibrant-card card-blue">
                     <h3>Perkhidmatan</h3>
                     <div class="card-bottom">
@@ -75,7 +56,6 @@
                         <div class="icon-box"><i class="fa-solid fa-screwdriver-wrench"></i></div>
                     </div>
                 </div>
-
                 <div class="vibrant-card card-orange">
                     <h3>Komuniti</h3>
                     <div class="card-bottom">
@@ -83,7 +63,6 @@
                         <div class="icon-box"><i class="fa-solid fa-users"></i></div>
                     </div>
                 </div>
-
                 <div class="vibrant-card card-purple">
                     <h3>Pendidikan</h3>
                     <div class="card-bottom">
@@ -91,7 +70,6 @@
                         <div class="icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
                     </div>
                 </div>
-
                 <div class="vibrant-card card-green">
                     <h3>Kekeluargaan</h3>
                     <div class="card-bottom">
@@ -99,45 +77,12 @@
                         <div class="icon-box"><i class="fa-solid fa-people-roof"></i></div>
                     </div>
                 </div>
-
                 <div class="vibrant-card card-darkblue">
                     <h3>IdeaNest</h3>
                     <div class="card-bottom">
                         <i class="fa-solid fa-arrow-right arrow-icon"></i>
                         <div class="icon-box"><i class="fa-solid fa-lightbulb"></i></div>
                     </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="system-architecture" style="margin-top: 50px;">
-            <h2 class="section-title fade-in">System Architecture</h2>
-            <div class="terminal-window glass-panel fade-in">
-                <div class="terminal-header">
-                    <span class="dot red"></span>
-                    <span class="dot yellow"></span>
-                    <span class="dot green"></span>
-                    <span class="terminal-title">admin@ketick-core:~</span>
-                </div>
-                <div class="terminal-body">
-                    <pre><code class="language-tree">
-<span class="keyword">user@ketick</span>:<span class="dir">~/command-center</span>$ tree -L 2
-.
-├── <span class="dir">css/</span>
-│   └── <span class="file">style.css</span>           <span class="comment"># UI/UX Core Styling (Minimalist Pro)</span>
-├── <span class="dir">js/</span>
-│   ├── <span class="file">script.js</span>           <span class="comment"># Intersection Observers & Canvas Particles</span>
-│   └── <span class="file">auth.js</span>             <span class="comment"># Vault Security & Session Validation</span>
-├── <span class="dir">vid/</span>
-│   └── <span class="file">trex-vid.mp4</span>        <span class="comment"># Cyber Sanctuary Hologram Video</span>
-├── <span class="file">index.html</span>            <span class="comment"># Public Ecosystem Interface</span>
-├── <span class="file">login.html</span>            <span class="comment"># Encrypted Vault Gateway</span>
-└── <span class="file">admin-dashboard.html</span>  <span class="comment"># Master Command Center (Classified)</span>
-
-4 directories, 6 files
-<span class="keyword">user@ketick</span>:<span class="dir">~/command-center</span>$ <span class="cursor">_</span>
-                    </code></pre>
                 </div>
             </div>
         </section>
@@ -158,10 +103,8 @@
                 <p>&copy; 2026 Ketick Platform. All systems operational.</p>
             </div>
         </footer>
-
     </div>
 
     <script src="js/script.js"></script>
-    <script src="js/auth.js"></script>
 </body>
 </html>
