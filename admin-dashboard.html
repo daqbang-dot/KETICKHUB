@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Command Center - Ketick</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    
     <script>
         if(sessionStorage.getItem('ketickAuth') !== 'true') {
             window.location.href = 'login.html'; 
@@ -19,20 +23,20 @@
 
     <div class="container">
         <header class="glass-panel slide-down">
-            <div class="logo" style="color: var(--accent-magenta); text-shadow: 0 0 8px rgba(255, 107, 129, 0.3);">
+            <div class="logo" style="color: var(--accent-magenta);">
                 <i class="fa-solid fa-user-secret"></i> COMMAND CENTER
             </div>
             <nav>
-                <span style="color: var(--text-muted); margin-right: 20px;">Status: <strong style="color: #7ee787;">ENCRYPTED</strong></span>
-                <button id="logoutBtn" class="btn-glow" style="padding: 8px 20px; font-size: 0.8rem; background: transparent; border: 1px solid var(--accent-magenta); box-shadow: none;">Log Keluar</button>
+                <span style="color: var(--text-muted); margin-right: 20px;">Secure Connection: <strong style="color: #7ee787;">ACTIVE</strong></span>
+                <button id="logoutBtn" class="btn-glow" style="padding: 8px 15px; font-size: 0.8rem; border: 1px solid var(--accent-magenta);">Logout</button>
             </nav>
         </header>
 
-        <section id="admin-core" style="padding-top: 20px;">
-            <h2 class="section-title fade-in">Real-Time Data Overview</h2>
+        <section id="admin-core">
+            <h2 class="section-title fade-in">Live Analytics</h2>
             <div class="grid-analytics">
                 <div class="glass-panel widget fade-in">
-                    <h3>SEO Health Score</h3>
+                    <h3>SEO Health</h3>
                     <div class="widget-content circular-progress">
                         <svg viewBox="0 0 100 100">
                             <circle class="bg" cx="50" cy="50" r="40"></circle>
@@ -41,26 +45,59 @@
                         <div class="percentage"><span class="counter" data-target="98">0</span>%</div>
                     </div>
                 </div>
-
                 <div class="glass-panel widget fade-in">
-                    <h3>Analitik Jualan (Live)</h3>
+                    <h3>Sales Performance</h3>
                     <div class="widget-content chart-container">
                         <div class="bar" style="--height: 40%;"></div>
                         <div class="bar" style="--height: 80%;"></div>
-                        <div class="bar" style="--height: 60%;"></div>
                         <div class="bar" style="--height: 100%;"></div>
-                        <div class="bar" style="--height: 50%;"></div>
-                        <div class="bar" style="--height: 90%;"></div>
+                        <div class="bar" style="--height: 60%;"></div>
                     </div>
-                    <p style="margin-top: 15px; color: var(--text-muted); font-size: 0.9rem;">Trending: Meningkat 24%</p>
                 </div>
-
                 <div class="glass-panel widget fade-in">
-                    <h3>Trafik Rangkaian</h3>
+                    <h3>User Traffic</h3>
                     <div class="widget-content">
                         <i class="fa-solid fa-tower-broadcast widget-icon" style="color: var(--accent-blue);"></i>
                         <span class="counter" data-target="15894">0</span>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="under-maintenance" class="fade-in">
+            <h2 class="section-title" style="color: var(--accent-magenta);">
+                <i class="fa-solid fa-wrench"></i> Under Maintenance
+            </h2>
+            
+            <div class="sanctuary-box glass-panel" style="margin-bottom: 50px;">
+                <div class="sanctuary-bg"></div>
+                <video src="vid/trex-vid.mp4" autoplay loop muted playsinline class="realistic-dino cyber-mode"></video>
+            </div>
+
+            <div class="terminal-window glass-panel">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="terminal-title">admin@ketick-core:~/maintenance</span>
+                </div>
+                <div class="terminal-body">
+                    <pre><code class="language-tree">
+<span class="keyword">admin@ketick</span>:<span class="dir">~/system-logs</span>$ tree -L 2
+.
+├── <span class="dir">css/</span>
+│   └── <span class="file">style.css</span>           <span class="comment"># Global UI Styles</span>
+├── <span class="dir">js/</span>
+│   ├── <span class="file">script.js</span>           <span class="comment"># Core Engine</span>
+│   └── <span class="file">auth.js</span>             <span class="comment"># Security Protocols</span>
+├── <span class="dir">vid/</span>
+│   └── <span class="file">trex-vid.mp4</span>        <span class="comment"># Sanctuary Hologram</span>
+├── <span class="file">index.html</span>            <span class="comment"># Public Access Node</span>
+└── <span class="file">admin-dashboard.html</span>  <span class="comment"># Master Control Node</span>
+
+Status: <span class="keyword">Optimizing System Architecture...</span>
+<span class="keyword">admin@ketick</span>:<span class="dir">~</span>$ <span class="cursor">_</span>
+                    </code></pre>
                 </div>
             </div>
         </section>
